@@ -278,15 +278,15 @@ En una red LRCN, una serie de fotogramas continuos es procesada individualmente 
 Como demostró Chinthulla \cite{chinthulla_deep_2025}, la arquitectura LRCN resulta especialmente apta para el análisis del hurto comercial, puesto que la componente convolucional captura la interacción visual entre el cliente y el entorno, mientras que la componente LSTM procesa la transición suave entre las etapas del comportamiento pre-delictivo.
 
 
-\subsection{Computación en el Borde y Eficiencia Computacional}
+\subsection{Edge Computing y Eficiencia Computacional}
 
-\subsubsection{Procesamiento en Dispositivos de Borde (\textit{Edge Computing})}
+\subsubsection{Procesamiento en Edge Computing}
 
 El paradigma tradicional de analítica de video ha dependido de la transmisión de flujos de video continuos hacia servidores centralizados en la nube o estaciones de trabajo de alto rendimiento equipadas con GPUs dedicadas.
 
 No obstante, en el contexto del comercio minorista de pequeña y mediana escala (minimarkets y bodegas), esta arquitectura centralizada resulta inviable debido a los costos recurrentes de ancho de banda, la latencia de red en la transmisión y la falta de infraestructura de cómputo avanzada \cite{aguero_intelligent_2025}.
 
-La Computación en el Borde (\textit{Edge Computing}) plantea descentralizar el procesamiento, ejecutando los algoritmos de inferencia directamente en dispositivos de hardware locales integrados al punto de captura de video.
+El edge computing plantea descentralizar el procesamiento, ejecutando los algoritmos de inferencia directamente en dispositivos de hardware locales integrados al punto de captura de video.
 
 Al procesar la información en tarjetas de cómputo embebido de bajo consumo, tales como las plataformas NVIDIA Jetson o Raspberry Pi, se elimina la dependencia de la nube, se reduce la latencia de respuesta a milisegundos y se resguardan las garantías de privacidad al evitar la transferencia externa de imágenes de videovigilancia \cite{hameed_real_2025, pranav_deep_2023}.
 
