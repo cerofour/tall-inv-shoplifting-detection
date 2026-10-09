@@ -35,147 +35,11 @@
 	
 	\UTPportada
 	\UTPindice
-	
-	% ============================================================
-	% 1. PROBLEMA DE INVESTIGACIÓN
-	% ============================================================
-	\section{Problema de investigación (máximo 1/2 página)}
-	
-En los últimos años, las pequeñas y medianas empresas como minimarkets y bodegas enfrentan un severo problema de robo en tiendas, que causa pérdidas de inventario y merma económica en el sector retail peruano. Gran parte de la seguridad con la que cuentan dichos establecimientos depende únicamente de sistemas de videovigilancia tradicionales (CCTV), los cuales presentan varias limitaciones operativas; entre ellas, están la fatiga visual de los operadores humanos, la presencia de puntos ciegos y su naturaleza aleatoria. Al mismo tiempo, han surgido diversas técnicas de aprendizaje profundo (Deep Learning) como una alternativa novedosa y prometedora; sin embargo, la literatura científica revela tres vacíos que es importante resaltar:
 
-\begin{enumerate}[leftmargin=*, noitemsep, topsep=2pt] 
-		\item \textbf{Falta de modelado de conductas pre-delictivas:} La mayoría de los modelos se centran unicamente en detectar el momento exacto en donde ocurre el robo de forma reactiva, ignorando lo más importante, que seria los patrones de movimiento, los cuales caracterizan y son de gran ayuda para identificar la intención delictiva de la persona.
-\item \textbf{Elevado costo computacional:} Las arquitecturas actuales requieren de hardware costoso, como servidores y GPUs de alto rendimiento, ocasionando que los comercios minoristas locales no puedan adquirir dicho hardware debido a su presupuesto limitado.
-\item \textbf{Escasez de investigación en el contexto nacional:} Existe una gran escasez de estudios y benchmarks adaptados a la infraestructura, iluminación y ángulos de cámara del retail peruano, identificándose unicamente el antecedente de \cite{aguero_intelligent_2025}.
-	\end{enumerate}
-	
-	
-	% ============================================================
-	% 2. OBJETIVO GENERAL Y ESPECÍFICOS
-	% ============================================================
-	\section{Objetivo general y específicos (máximo 1 página)}
-	
-	\subsection{Objetivo general}
-	Desarrollar un modelo de aprendizaje profundo basado en la arquitectura YOLO + LSTM y el framework PCB (\textit{Pre Crime Behavior}), optimizado para bajo costo computacional y desplegable en edge devices, para mejorar las métricas de rendimiento en la detección temprana de conductas de \textit{shoplifting} en el entorno retail minorista peruano.
-	
-	\subsection{Objetivos específicos}
-
-		\begin{enumerate}
-			\item \textbf{Construir y estructurar un dataset propio} con diversas secuencias de video de comportamiento de compra y tambien conductas sospechosas en diferente comercios minoristas locales, aplicando diferntes técnicas de preprocesamiento, segmentación de secuencias y data augmentation.
-			
-			\item \textbf{Diseñar e integrar la arquitectura híbrida YOLO + LSTM}, combinando redes CNN y LSTM para la extracción de características espaciales y el modelado temporal de la secuencia pre-delictiva, consiguiendo tambien optimizar hiperparámetros como la longitud de secuencia y el tamaño de lote.
-			
-			\item \textbf{Implementar y evaluar el despliegue del modelo sobre edge diveces} de bajo consumo computacional como en tarjetas NVIDIA Jetson o Raspberry Pi, analizando las diferente métricas de eficiencia operativa como la latencia de detección y los fotogramas por seguno (FPS).
-			
-			\item \textbf{Validar la precisión y rendimiento predictivo del sistema} mediante las diversas métricas estándar como Precisión, Recall, F1-Score y mAP, comparando los resultados obtenidos frente a los detectores espaciales estáticos y arquitecturas pesadas reportadas en la literatura.
-		\end{enumerate}
-	
-	% ============================================================
-	% 3. JUSTIFICACIÓN
-	% ============================================================
-	\section{Justificación}
-	
-La presente investigación se justifica por la necesidad de los establecimientos pequeños del sector retail peruano frente a las conductas asociadas al shoplifting, buscando desarrollar una alternativa eficiente para detectar rápidamente la presencia de hurtos en tiendas. En la actualidad, la mayoría de negocios dependen de soluciones de vigilancia convencionales, los cuales sufren de algunas limitaciones como: la fatiga visual, puntos ciegos y la dificultad para detectar patrones de comportamientos previos al hurto. A esto se suma que las soluciones basadas en aprendizaje profundo suelen requerir hardware costoso, lo que dificulta su adopción en este tipo de comercios.
-
-Con respecto a la problemática mencionada, se propone una arquitectura de Deep Learning basado en la integración de la arquitectura YOLO con LSTM y el framework PCB (Pre Crime Behavior), enfocado a reconocer patrones espacio temporales en las conductas previas al crimen. La implementación estará enfocada a dispositivos de bajo consumo como NVIDIA Jetson o Raspberry Pi, buscando facilitar su aplicación en los comercios minoristas con bajo presupuesto. Esta propuesta se encuentra alineada con el objetivo general de desarrollar un modelo optimizado para mejorar la detección temprana de shoplifting en el contexto del retail minorista peruano.
-
-Asimismo, la investigación busca aportar evidencia adaptada al contexto peruano por medio de la construcción de un dataset propio que incluya diversas secuencias de comportamientos sospechosos en diferentes condiciones de comercios minoristas locales. Esto permitirá considerar factores importantes como las variaciones de iluminación, ángulos de cámara, oclusiones y puntos ciegos.
-
-Los resultados esperados ayudarán a determinar si la arquitectura propuesta puede lograr alcanzar un equilibrio entre la capacidad detección y la eficiencia computacional, proporcionando información sobre su viabilidad en la implementación para entornos de retail minorista peruano.
-	
-	% ============================================================
-	% 4. REVISIÓN DE LA LITERATURA ACTUAL O ESTADO DEL ARTE
-	% ============================================================
-	\section{Estado del arte}
-  	
-	\subsection{Introducción}
-  
-  La detección automática de shoplifting en centros comerciales mediante técnicas de \textit{computer vision} y deep learning ha experimenado crecimiento constante en los últimos años, principalmente impulsado debido a las crecientes pérdidas económicas que asociadas al hurto minorista así como por los avances en arquitecturas de redes neuronales convolucionales y recurrentes. La revisión de literatura evidencia una evolución: pasamos desde los primeros acercamientos basados en \textit{hand-crafted features} como HOG (\textit{Historigram of Gradients}) y LBP (\textit{Local Binary Pattern}) (\cite{m_deep_2023}) combinadas con clasificadores clásicos, pasando a modelos espacio temporales profundos como 3DCNN, LRCN, y CNN-LSTM, hasta los detectores de una sola etapa como la arquitectura YOLO, capaces de operar en hardware limitado. Resaltamos que al revisar de manera crítica los diez trabajos más relevantes en este campo, se observa que la mayoría de estudios utilizan el dataset UCF-Crime, lo que limita la aplicabilidad y generalización de estos al contexto peruano.
-  
-  
-	\subsection{Desarrollo}
-	
-	\subsubsection{Modelos Convolucionales de Una Sola Etapa Orientados a Tiempo Real}
-  
-    Uno de los ejes de la literatura más prevalente es el uso de arquitecturas YOLO (\textit{You Only Look Once}) para la detección de comportamiento
-    anómalo o sospechoso. En 2025 Hameed et al desarrolló un sistema basado en YOLOv8 entrenado con el dataset UCF-Crime más un conjunto de
-    imágenes recolectadas por los autores, se alcanzó un mAP50-95 del 94.07\% y una precisión (\textit{Precision}) del 94.93\%, manteniendo el tiempo de respuesta en tan solo     12 milisegundoss por fotograma, esto demuestra que este tipo de arquitecturas son viables para ser implementadas en una solución de tiempo real en edge devices \cite{hameed_real_2025}. En otro trabajo realizado por Pavithra et al en 2024 (\cite{v_deep_2024}) compara modelos espacio-temporales (LRCN, ConvLSTM e InceptionV3) contra YOLOv8 encontrando que este obtuvo un mejor desempeño en la métrica de mAP50 de 83.2\% justamente por prescindir del análisis temporal, lo que lo hace menos costoso computacionalmente.
-    
-    Otro trabajo que continúa esta línea de investigación es el precedente geográfico más cercano al presente estudio, desarrollado por Aguero y Rengifo en 2025 (\cite{aguero_intelligent_2025}), plantea un sistema de
-    videovigilancia inteligente para minimercados del distrito de Santiago de Surco, Lima, empleando YOLOv8 sobre un dataset propio de más de 2,700
-    imágenes reales y simuladas, con resultados de 80\% en Precision y Recall, sin embargo se encuentra una caída del mAP50 del 84\% frente al mAP50-95 del 57\%, es esto lo que deja en evidencia la baja generalización del modelo frente a condiciones más difíciles (poca iluminación, variaciones de la cámara y oclusión).
-    
-    Si bien, ambos trabajos confirman que YOLO es la arquitectura más aplicable para el despliegue en tiempo real en un entorno con un hardware prácticamente limitado, es importante hacer notar que el único antecedente peruano \cite{aguero_intelligent_2025} limita su dataset a un solo distrito de Lima y a un tamaño reducido de 2782 imágenes, a comparación de la mayoría de estándares internacionales, que suelen tener más de 15000 imágenes \cite{hameed_real_2025}. Además, frente a la caída de la métrica mAP50-95 con respecto a mAP50, se sugiere que el modelo no es completamente generalizable en condiciones de variabilidad lumínica, lo cual abre una oportunidad concreta para este trabajo: ampliar y diversificar el dataset con datos provenientes de distintos comercios minoristas peruanos podría mejorar sustancialmente la robustez del modelo sin incrementar necesariamente el costo computacional, dado que YOLO ya ha demostrado ser eficiente en este aspecto.
-		
-	\subsubsection{Modelos Híbridos Espacio-Temporales Orientados a la Detección Temprana}
-  
-    Un segundo grupo de investigaciones se centra en capturar la dimensión temporal del comportamiento sospechoso, partiendo de la premisa de que
-    el hurto no es un evento instantáneo sino un proceso que se desarrolla a lo largo de varios segundos, incluso minutos, antes de consumarse.
-    Una de las soluciones con este enfoque combina una red LSTM con una arquitectura InceptionV3, optimizada mediante el
-    ajuste de la longitud de secuencia y el tamaño de lote, logrando un 89.36\% de precisión en un dataset sintetizado por ellos mismos, aunque a costa de
-    tiempos de entrenamiento que, en sus configuraciones más profundas, superaron las cuatro horas por experimento (\cite{ansari_optimized_2023}). Por su parte,
-    Martínez-Mascorro et al., propone un enfoque distinto: en lugar de detectar el hurto en sí, modelan el comportamiento previo
-    al delito (pre-crime behavior) mediante redes 3DCNN, obteniendo una precisión de hasta 80.76\% en el dataset existente hasta y 89\% en
-    uno sintetizado por los mismos autores, documentando de forma detallada el impacto de la resolución de imagen y la profundidad
-    temporal (número de frames) sobre el tiempo de entrenamiento y la exactitud del modelo (\cite{martinez-mascorro_suspicious_2021}).
-    
-    Dado que uno de nuestros objetivos específicos es \textit{implementar y evaluar el despliegue del modelo sobre edge devices}, los resultados de esta sección nos muestran que, a mayor profundidad temporal y resolución, mejora la
-    exactitud pero se dispara el tiempo de entrenamiento y, por extensión, el costo de inferencia en producción. Para un contexto de comercio
-    minorista peruano, estas soluciones resultan poco viables tal como están planteadas en la literatura. Esto refuerza la necesidad de optar
-    por una arquitectura ligera (como YOLO) antes que por modelos híbridos profundos, y de evaluar explícitamente el trade-off entre exactitud
-    y eficiencia computacional como parte de la metodología de la tesis, algo que ningún estudio revisado aborda de forma sistemática en conjunto
-    con un dataset local.
-    
-  \subsubsection{Enfoques orientados a la privacidad y mitigación de sesgos}
-    Un tercer eje, más reciente, responde a las crecientes preocupaciones éticas sobre el uso de video crudo en sistemas de vigilancia.   
-    Ante esto, se introduce el dataset \textit{PoseLift}, un dataset construido en colaboración cercana con una tienda retail minorista de Estados     Unidos que, en lugar de     almacenar video, conserva únicamente secuencias de pose humana, anonimizando así la identidad de los clientes, 
-    los autores evalúan modelos de detección de anomalías no supervisados (GEPC, TSGAD, STG-NF), obteniendo como máximo un AUC-ROC de 67.46\% lo que es
-    inferior a las cifras de exactitud reportadas por los enfoques supervisados de detección de objetos. Los propios autores reconocen que este desempeño
-    más modesto se debe, en parte, al desbalance de clases inherente al problema y a la dificultad de discriminar acciones ambiguas, como el hecho de sacar
-    un teléfono del bolsillo que puede confundir al modelo con ocultar un objeto \cite{rashvand_exploring_2025}.
-    
-    Se evidencia entonces que la preservación de la privacidad y la detección de hurtos no
-    necesariamente son incompatibles, asimismo que existe una brecha de desempeño entre los enfoques que preservan la privacidad y los que priorizan
-    el rendimiento bruto. Para efectos de nuestra tesis, este antecedente sugiere que, si bien la privacidad es un aspecto deseable a mediano plazo,
-    priorizar en esta primera etapa un enfoque supervisado basado en detección de objetos (más maduro y con métricas más altas y estables) resulta más
-    pertinente para el objetivo de mejorar las métricas de rendimiento planteado, dejando el análisis de anonimización de datos como una línea de trabajo
-    futura una vez validado el dataset peruano.
-  
-  \subsubsection{Sistemas híbridos con integración de sensores e IoT}
-  
-    Finalmente, un grupo de trabajos complementa la visión por computadora con sensórica adicional para reforzar la robustez de la detección.
-    En \cite{m_deep_2023} diseñaron un sistema para joyerías que combina YOLO con sensores de peso (celda de carga) y sensores infrarrojos de
-    proximidad, validado sobre un prototipo con Raspberry Pi 3, logrando una exactitud de validación de 97.73\%, aunque sobre un dataset muy reducido, de
-    tan solo 144 imágenes. Varun et al \cite{m_intelligent_2025}, proponen un sistema similar orientado a bancos y joyerías, que combina detección YOLO
-    durante el día con un módulo de detección de sonido basado en MFCC durante la noche, e integra actuadores IoT (ESP32) para activar alarmas
-    y liberar gas no tóxico ante una amenaza detectada.
-    
-    Hay una limitación metodológica clara para
-    los fines de esta tesis en los artículos de esta sección: los datasets utilizados son extremadamente pequeños (144 imágenes en el caso de \cite{m_deep_2023}) y las métricas
-    de validación no siempre corresponden a condiciones representativas de un comercio real, sino a prototipos de laboratorio o tiendas
-    simuladas. Esto confirma, una vez más, que la escasez de datasets reales y de tamaño adecuado sigue siendo el cuello de botella principal
-    en esta línea de investigación, independientemente del país o del enfoque tecnológico elegido.
-
-
-  \subsection{Conclusiones del Estado del Arte}
-  
-  Se encontraron diversos puntos centrales en los estudios. Los diez trabajos revisados coinciden en un
-  diagnóstico común, el hurto en tiendas es un problema que crece sostenidamente en términos económicos (\cite{rashvand_exploring_2025}, \cite{v_deep_2024}, \cite{ansari_optimized_2023}) y que los sistemas de videovigilancia tradicionales, dependientes del monitoreo humano, resultan insuficientes debido a que dependen completamente de la atención del operador la cual se ve superada completamente por la cantidad de datos que debe procesar (\cite{anikwe-onyiwa_recent_2025}). A partir de ahí, existe también coincidencia en que el aprendizaje profundo, ya sea mediante detectores de una sola etapa como YOLO o mediante arquitecturas espacio temporales (3DCNN, LRCN, CNN-LSTM) constituyen la vía más prometedora para automatizar esta detección, y en que el dataset UCF-Crime es, hasta la fecha, el recurso más utilizado para entrenar y comparar estos modelos (\cite{martinez-mascorro_suspicious_2021}, \cite{chinthulla_deep_2025}, \cite{hameed_real_2025}).
-  
-Sin embargo, los estudios difieren notablemente en la forma de plantear el problema. Mientras un grupo de investigaciones \cite{hameed_real_2025, v_deep_2024, aguero_intelligent_2025} trata la detección como un problema de clasificación binaria en tiempo real sobre imágenes o fotogramas individuales, otro grupo \cite{martinez-mascorro_suspicious_2021, ansari_optimized_2023, chinthulla_deep_2025} insiste en la necesidad de modelar la dimensión temporal del comportamiento, es decir, detectar la intención antes de que el crimen se consume, lo que exige arquitecturas más costosas de entrenar. Esta discrepancia en la literatura no ha sido resuelta: no existe consenso sobre si conviene priorizar la velocidad de inferencia (enfoque espacial) o la riqueza temporal (enfoque espacio-temporal), y los propios resultados numéricos entre ambos enfoques no son directamente comparables porque se evalúan sobre datasets, métricas y condiciones de prueba distintas \cite{rashvand_exploring_2025}.
-
-Se aprecia una tendencia clara hacia la adopción de YOLO en sus versiones más recientes (v5, v8, v11) como arquitectura preferida cuando el objetivo es el despliegue en tiempo real \cite{hameed_real_2025, aguero_intelligent_2025, m_intelligent_2025, m_deep_2023}, desplazando gradualmente a los modelos puramente recurrentes en los estudios más nuevos. También se observa una tendencia creciente, aunque aún incipiente, hacia la preocupación ética: los trabajos más recientes \cite{hameed_real_2025, rashvand_exploring_2025} discuten explícitamente el riesgo de sesgo demográfico y de falsos positivos, algo ausente en los estudios de 2020-2022.
-
-La ausencia más significativa es la escasez de datasets construidos con data real de tiendas, capturada en campo y en condiciones no controladas. De los diez estudios, solo dos \cite{rashvand_exploring_2025} en Estados Unidos y \cite{aguero_intelligent_2025} en Lima trabajaron con grabaciones reales de un comercio; el resto recurre a UCF-Crime (videos agregados de internet, sin contexto de tienda específico) o a escenarios escenificados por actores en laboratorio \cite{chinthulla_deep_2025, m_deep_2023, m_intelligent_2025}. Para el contexto peruano, la ausencia es aún más marcada: existe un único antecedente \cite{aguero_intelligent_2025}, limitado a un solo distrito y a un dataset de tamaño moderado.
-
-Es importante destacar que estas limitaciones no son una interpretación nuestra, sino que los propios autores las reconocen explícitamente: el modelo de cuatro clases de Chinthulla \cite{chinthulla_deep_2025} obtuvo un F1-score de 0.00 en la clase "Theft" por la escasez de muestras disponibles, mientras que el mejor modelo de Rashvand et al. (2025) confunde acciones cotidianas, como sacar el celular del bolsillo, con intentos de ocultamiento, lo que confirma que el desbalance de clases continúa siendo un obstáculo no resuelto en ambos estudios. De forma similar, el mAP50-95 de 57\% reportado por Solórzano y Candela \cite{aguero_intelligent_2025} refleja una degradación del desempeño ante oclusión y condiciones de iluminación variables, por lo que los propios autores sugieren ampliar el dataset y explorar arquitecturas más recientes. Ansari y Singh \cite{ansari_optimized_2023} y Martínez-Mascorro et al. \cite{martinez-mascorro_suspicious_2021}, por su parte, coinciden en que una mayor profundidad temporal eleva considerablemente el tiempo de entrenamiento, sin que ello garantice una mejora proporcional en la exactitud.
-
-A pesar de los avances documentados, no existe en el contexto peruano un dataset de hurto minorista que combine tres condiciones a la vez: haber sido recolectado directamente en comercios reales (bodegas, minimarkets y tiendas de conveniencia) de más de una localidad; tener un volumen suficiente para sostener un entrenamiento robusto sin el desbalance de clases que ha limitado a estudios previos; y haber sido evaluado explícitamente bajo el criterio de costo computacional, y no solo de exactitud.
-
-El único antecedente local \cite{aguero_intelligent_2025} evidencia una caída de desempeño bajo condiciones reales de oclusión y variabilidad de iluminación (mAP50-95 de 57\%), lo que sugiere que ampliar y diversificar la data de entrenamiento con muestras propias del comercio minorista peruano podría mejorar la robustez del modelo sin necesidad de recurrir a arquitecturas más pesadas.
-
-  Considerando estos vacíos, se plantea la siguiente pregunta de investigación: ¿En qué medida el diseño de un modelo de deep learning basado en YOLO + LSTM y el framework PCB permite mejorar las métricas de rendimiento en la detección temprana de shoplifting (precisión, recall, mAP50-95) manteniendo un bajo costo computacional ejecutable en edge devices, dentro del entorno retail minorista peruano?
-
+      \input{1-intro}
+      \input{2-objetivos}
+      \input{3-justificacion}
+      \input{4-estado-arte}
       \input{5-marco-teorico}
 		
 	% ============================================================
@@ -185,7 +49,7 @@ El único antecedente local \cite{aguero_intelligent_2025} evidencia una caída 
 	% ============================================================
 	% 6. HIPÓTESIS
 	% ============================================================
-	\section{Hipótesis}
+	% \section{Hipótesis}
 	% El diseño de un modelo de deep learning basado en la arquitectura híbrida
   % YOLO + LSTM + framework PCB, entrenado con un dataset propio de comercios minoristas
   % peruanos, permite superar el mAP50-95 de 57\% reportado por el antecedente local
@@ -195,31 +59,31 @@ El único antecedente local \cite{aguero_intelligent_2025} evidencia una caída 
 	% ============================================================
 	% 7. METODOLOGÍA
 	% ============================================================
-	\section{Metodología}
+	% \section{Metodología}
 	
 	% ============================================================
 	% 8. CRONOGRAMA DE TRABAJO
 	% ============================================================
-	\section{Cronograma de trabajo}
+	% \section{Cronograma de trabajo}
 	
 	% ============================================================
 	% 9. PRESUPUESTO
 	% ============================================================
-	\section{Presupuesto}
+	% \section{Presupuesto}
 		
 	% Espacio para que el alumno agregue su presupuesto.
 	
 	% ============================================================
 	% 10. BIBLIOGRAFÍA
 	% ============================================================
-	\section{Bibliografía}
+	% \section{Bibliografía}
 	
 	\bibliography{referencias}
 	
 	% ============================================================
 	% 11. ANEXOS
 	% ============================================================
-	\section{Anexos}
+	% \section{Anexos}
 		
 	% Para anexos reales puede utilizar:
 	% \appendix
