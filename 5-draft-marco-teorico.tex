@@ -1,0 +1,57 @@
+\subsection{Videovigilancia y Seguridad en el Entorno Retail}
+
+En el entorno retail, los sistemas tradicionales de Circuito Cerrado de
+Televisión (CCTV) han operado desde su nacimiento como un mecanismo pasivo,
+cuya eficacia depende casi completamente de operadores humanos encargados de
+supervisar las imágenes en tiempo real. Sin embargo, este último punto es la
+principal desventaja de estos métodos pues, el operador humano se ve
+completamente saturado por la cantidad de pantallas, ángulos y situaciones
+distintas a las que debe prestar atención, sumado a esto están factores
+como la falta de experiencia, aburrimiento, distracciones, sesgos del
+operador, entre otros.
+
+Frente a estas desventajas, la videovigilancia inteligente (\textit{Intelligent Video Surveillance -- IVS) se posiciona como un
+paradigma de vigilancia activo basado en modelos de Deep Learning que transforman
+los flujos de imágenes de diversas fuentes en información estructurada,
+con anotaciones visuales y alertas en tiempo real. En el contexto retail y de este
+trabajo, nos enfocamos en aquellas soluciones planteadas para la detección precisa
+y temprana de hurtos en tiendas peruanas minoristas --modalidad conocida en la literatura
+como \textit{shoplifting}, con miras a ofrecer una solución capaz de mitigar la merma
+desconocida, es decir aquella que proviene directamente de hurtos.
+
+La ventaja principal de la IVS está en la capacidad de operar continuamente,
+observando diversas fuentes de datos simultáneas y filtrando solamente los segmentos de
+imagen relacionados a actividades de hurto. Gracias al crecimiento del deep learning
+y la literatura en este campo, podemos encontrar soluciones con diversos enfoques, enfocadas en
+la detección directa en tiempo real del hurto con modelos espaciales como \cite{Aguero, Salah},
+también aquellos que plantean que el hurto no es una actividad aislada en el tiempo, sino que
+se da en 4 fases \cite{martinez, cinthula} por lo cual es necesario utilizar modelos
+espacio-temporales, asimismo autores que combinan modelos espaciales con sensores de proximidad, IR
+y de peso para determinar si se ha dado realmente un hurto \cite{Pranav}, por último tenemos las
+soluciones orientadas a proteger la privacidad sin sacrificar rendimiento en la detección, propuesta por
+\cite{Poselift} quien también aporta un dataset \textit{Poselift} específicamente realizado con este propósito.
+
+\subsection{Modelos Espaciales y Espacio-Temporales}
+
+Los modelos espaciales son aquellos que parten de una CNN capaz de aprender \textit{features} espaciales y
+reconocer patrones de crimen a través de estos \cite{Chioma}, este tipo de modelos resultan prevalentes en la
+literatura, especialmente en los trabajos que utilizan la arquitectura YOLO, un CNN \texit{single-stage}, que
+procesa las imágenes en una sola pasada, predice la generación de \textit{bounding boxes} --cajas delimitadoras del
+objeto detectado--, y categoriza el objeto detectado en tiempo real. El trabajo realizado por \cite{Aguero}, también
+en el contexto retail peruano, utiliza YOLOv8 para detectar en tiempo real el hurto y señalar este dentro de una
+bounding box en tiempo real. También vemos como Pranav et al (\cite{m_deep_2023}) suma sensores IR, de proximidad y de
+peso a este modelo para realizar una detección más precisa del hurto apoyado de varios fuentes de confirmación. Por
+último es importante mencionar que este tipo de modelos son mucho menos costosos computacionalmente, capaces de correr
+en \textit{edge devices} como NVIDIA Jetson (\cite{hameed}), Raspberri Pi 3 (\cite{m_deep_2023}) y hardware limitado
+o antiguo (\cite{Aguero}).
+
+Sin embargo, diversos autores plantean que el crimen debe analizarse como una secuencia de etapas conductuales a lo largo
+del tiempo, es aquí donde entran los modelos espacio-temporales con memoria recurrente. Las RNN (\textit{recurrent neural network)
+son redes neuronales que introducen un circuito interno de retroalimentación que actúa como una memoria del contexto pasado,
+sin embargo sufren del problema de desvanecimiento al procesar secuencias de prolongadas, como si estuvieran olvidando. Para
+solucionar esto, se introducen las redes LSTM (\textit{Long Short-Term Memor}) las cuales utilizan una celda de memoria controlada
+por tres mecanismos de compuerta, la \textit{forget gate} que utiliza una función sigmoide para decidir que elementos de la celda
+deben olvidarse, la \textit{input gate} decide qué información nueva debe guardarse en el estado actual de la celda, y la
+\textit{output gate} decide que parte del estado de la celda actualizada se enviará hacia el siguiente paso de la secuencia. Este
+circuito de memoria es especialmente útil en la detección de hurtos, pues como propone Martinez-Mascorro \cite{martinez}, el crimen
+se da durante cuatro etapas para las cuales plantea el framework PCB (\textit{Pre-Crime Behavior}).
