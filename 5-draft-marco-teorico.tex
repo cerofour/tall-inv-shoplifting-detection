@@ -10,7 +10,7 @@ distintas a las que debe prestar atención, sumado a esto están factores
 como la falta de experiencia, aburrimiento, distracciones, sesgos del
 operador, entre otros.
 
-Frente a estas desventajas, la videovigilancia inteligente (\textit{Intelligent Video Surveillance -- IVS) se posiciona como un
+Frente a estas desventajas, la videovigilancia inteligente (\textit{Intelligent Video Surveillance -- IVS}) se posiciona como un
 paradigma de vigilancia activo basado en modelos de Deep Learning que transforman
 los flujos de imágenes de diversas fuentes en información estructurada,
 con anotaciones visuales y alertas en tiempo real. En el contexto retail y de este
@@ -23,35 +23,44 @@ La ventaja principal de la IVS está en la capacidad de operar continuamente,
 observando diversas fuentes de datos simultáneas y filtrando solamente los segmentos de
 imagen relacionados a actividades de hurto. Gracias al crecimiento del deep learning
 y la literatura en este campo, podemos encontrar soluciones con diversos enfoques, enfocadas en
-la detección directa en tiempo real del hurto con modelos espaciales como \cite{Aguero, Salah},
+la detección directa en tiempo real del hurto con modelos espaciales como \cite{aguero_intelligent_2025, hameed_real_2025},
 también aquellos que plantean que el hurto no es una actividad aislada en el tiempo, sino que
-se da en 4 fases \cite{martinez, cinthula} por lo cual es necesario utilizar modelos
+se da en 4 fases \cite{martinez-mascorro_suspicious_2021, chinthulla_deep_2025} por lo cual es necesario utilizar modelos
 espacio-temporales, asimismo autores que combinan modelos espaciales con sensores de proximidad, IR
-y de peso para determinar si se ha dado realmente un hurto \cite{Pranav}, por último tenemos las
+y de peso para determinar si se ha dado realmente un hurto \cite{m_deep_2023}, por último tenemos las
 soluciones orientadas a proteger la privacidad sin sacrificar rendimiento en la detección, propuesta por
-\cite{Poselift} quien también aporta un dataset \textit{Poselift} específicamente realizado con este propósito.
+\cite{rashvand_exploring_2025} quien también aporta un dataset \textit{Poselift} específicamente realizado con este propósito.
 
 \subsection{Modelos Espaciales y Espacio-Temporales}
 
 Los modelos espaciales son aquellos que parten de una CNN capaz de aprender \textit{features} espaciales y
-reconocer patrones de crimen a través de estos \cite{Chioma}, este tipo de modelos resultan prevalentes en la
-literatura, especialmente en los trabajos que utilizan la arquitectura YOLO, un CNN \texit{single-stage}, que
+reconocer patrones de crimen a través de estos \cite{anikwe-onyiwa_recent_2025}, este tipo de modelos resultan prevalentes en la
+literatura, especialmente en los trabajos que utilizan la arquitectura YOLO, un CNN \textit{single-stage}, que
 procesa las imágenes en una sola pasada, predice la generación de \textit{bounding boxes} --cajas delimitadoras del
-objeto detectado--, y categoriza el objeto detectado en tiempo real. El trabajo realizado por \cite{Aguero}, también
+objeto detectado--, y categoriza el objeto detectado en tiempo real. El trabajo realizado por \cite{aguero_intelligent_2025}, también
 en el contexto retail peruano, utiliza YOLOv8 para detectar en tiempo real el hurto y señalar este dentro de una
 bounding box en tiempo real. También vemos como Pranav et al (\cite{m_deep_2023}) suma sensores IR, de proximidad y de
 peso a este modelo para realizar una detección más precisa del hurto apoyado de varios fuentes de confirmación. Por
 último es importante mencionar que este tipo de modelos son mucho menos costosos computacionalmente, capaces de correr
-en \textit{edge devices} como NVIDIA Jetson (\cite{hameed}), Raspberri Pi 3 (\cite{m_deep_2023}) y hardware limitado
-o antiguo (\cite{Aguero}).
+en \textit{edge devices} como NVIDIA Jetson (\cite{hameed_real_2025}), Raspberri Pi 3 (\cite{m_deep_2023}) y hardware limitado
+o antiguo (\cite{aguero_intelligent_2025}).
 
 Sin embargo, diversos autores plantean que el crimen debe analizarse como una secuencia de etapas conductuales a lo largo
-del tiempo, es aquí donde entran los modelos espacio-temporales con memoria recurrente. Las RNN (\textit{recurrent neural network)
+del tiempo \cite{martinez-mascorro_suspicious_2021}, es aquí donde entran los modelos espacio-temporales con memoria recurrente. Las RNN (\textit{recurrent neural network})
 son redes neuronales que introducen un circuito interno de retroalimentación que actúa como una memoria del contexto pasado,
-sin embargo sufren del problema de desvanecimiento al procesar secuencias de prolongadas, como si estuvieran olvidando. Para
-solucionar esto, se introducen las redes LSTM (\textit{Long Short-Term Memor}) las cuales utilizan una celda de memoria controlada
+sin embargo sufren del problema de desvanecimiento del gradiente al procesar secuencias de prolongadas, como si estuvieran olvidando. Para
+solucionar esto, se introducen las redes LSTM (\textit{Long Short-Term Memory}) las cuales utilizan una celda de memoria controlada
 por tres mecanismos de compuerta, la \textit{forget gate} que utiliza una función sigmoide para decidir que elementos de la celda
 deben olvidarse, la \textit{input gate} decide qué información nueva debe guardarse en el estado actual de la celda, y la
-\textit{output gate} decide que parte del estado de la celda actualizada se enviará hacia el siguiente paso de la secuencia. Este
-circuito de memoria es especialmente útil en la detección de hurtos, pues como propone Martinez-Mascorro \cite{martinez}, el crimen
-se da durante cuatro etapas para las cuales plantea el framework PCB (\textit{Pre-Crime Behavior}).
+\textit{output gate} decide que parte del estado de la celda actualizada se enviará hacia el siguiente paso de la secuencia. Las redes
+3DCNN (\textit{3D Convolutional Neural Network}) plantean otro enfoque, extienden las redes convolucionales a una tercera dimensión que
+incluye el tiempo, las arquitecturas convolucionales procesan simultáneamente el ancho, largo y profundidad de cada frame, encontrando
+como cambia en el tiempo.
+
+Estos circuito de memoria es especialmente útil en la detección de hurtos, pues como propone Martinez-Mascorro \cite{martinez-mascorro_suspicious_2021}, el crimen
+se da durante cuatro etapas para las cuales plantea el framework PCB y utiliza una red 3DCNN para la detección temprana de las conductas pre-crimen, sin embargo
+aplicando el mismo framework, Chinthulla encuentra que las redes 3DCNN son inferiores en comparación con las redes LRCN (CNN + LSTM) apuntando
+hacia un enfoque de arquitecturas híbridas \cite{chinthulla_deep_2025}. En esta misma línea, Ansari y Singh proponen utilizar la red CNN InceptionV3 acoplada a una
+red de memoria LSTM para clasificar la detección temporal \cite{ansari_optimized_2023}, en un estudio similar, Muneer cambia la red LSTM por una BiLSTM que analiza la secuencia
+utilizando dos capas LSTM, una de estas procesa la secuencia en sentido normal (de pasado a futuro) y la otra en sentido contrario (de futuro hacia el pasado) para
+una clasificación más precisa \cite{muneer}.
