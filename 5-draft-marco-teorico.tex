@@ -74,8 +74,11 @@ una clasificación más precisa \cite{muneer_shoplifting_2023}.
   de procesamiento (\textit{frames per second -- FPS}), latencia de inferencia y tiempo de
   entrenamiento. En el contexto del retail minorista peruano es realmente importante
   encontrar soluciones de bajo costo computacional para asegurar la viabilidad de la
-  implementación. En la revisión de literatura se encontró que los modelos espacio-temporales
-  pueden llegar a ser más costosos computacionalmente, como lo demuestran Ansari y Singh
+  implementación. 
+  
+  En la revisión de literatura se encontró que los modelos espacio-temporales
+  pueden llegar a ser más costosos computacionalmente si no se realiza una optimización de
+  hiperparámetros, como lo demuestran Ansari y Singh
   en su trabajo sobre optimización de parámetros para la detección de shoplifting
   utilizando una red LSTM, encontraron que al procesar una secuencia de 290
   fotogramas se alcanzó un tiempo promedio por \textit{epoch} de 150 segundos,
@@ -85,4 +88,8 @@ una clasificación más precisa \cite{muneer_shoplifting_2023}.
   en una red 3DCNN no se traduce directamente a un mejor rendimiento ya que encuentra que el
   tiempo de entrenamiento al pasar de 10 a 90 frames se multiplica casi por 12, sin embargo
   las métricas con menores frames no son realmente más bajas que los modelos entrenados con
-  90 frames.
+  90 frames \cite{martinez-mascorro_suspicious_2021}.
+
+  La literatura enfocada en el bajo costo computacional suele apuntar a los modelos CNN 
+  single-stage como las arquitecturas YOLO, o modelos espacio-temporales con optimización
+  de hiperparámetros.
