@@ -68,12 +68,21 @@ utilizando dos capas LSTM, una de estas procesa la secuencia en sentido normal (
 una clasificación más precisa \cite{muneer_shoplifting_2023}.
 
 \subsection{Costo Computacional}
-  
-En la revisión de literatura se encontró que los modelos espacio-temporales pueden llegar a ser más costosos computacionalmente, como lo demuestran Ansari y Singh
-en su trabajo sobre optimización de parámetros para la detección de shoplifting
-utilizando una red LSTM, encontraron que al procesar una secuencia de 290
-fotogramas se alcanzó un tiempo promedio por \textit{epoch} de 150 segundos,
-comparado con los 4.21 segundos al procesar una secuencia de 32 fotogramas
+
+  El costo computacional está compuesto por diversas métricas que no se encuentran realmente
+  estandarizadas en la literatura, en esta investigación nos centramos en 3 específicas: tasa
+  de procesamiento (\textit{frames per second -- FPS}), latencia de inferencia y tiempo de
+  entrenamiento. En el contexto del retail minorista peruano es realmente importante
+  encontrar soluciones de bajo costo computacional para asegurar la viabilidad de la
+  implementación. En la revisión de literatura se encontró que los modelos espacio-temporales
+  pueden llegar a ser más costosos computacionalmente, como lo demuestran Ansari y Singh
+  en su trabajo sobre optimización de parámetros para la detección de shoplifting
+  utilizando una red LSTM, encontraron que al procesar una secuencia de 290
+  fotogramas se alcanzó un tiempo promedio por \textit{epoch} de 150 segundos,
+  comparado con los 4.21 segundos al procesar una secuencia de 32 fotogramas
   \cite{ansari_optimized_2023}. En la misma línea, Martinez-Mascorro encuentran que una
-mayor profundidad temporal --cantidad de fotogramas consecutivos procesados en el volumen 3D--
-en una red 3DCNN no se traduce directamente a mejor rendimiento del modelo, al entrenar
+  mayor profundidad temporal --cantidad de fotogramas consecutivos procesados en el volumen 3D--
+  en una red 3DCNN no se traduce directamente a un mejor rendimiento ya que encuentra que el
+  tiempo de entrenamiento al pasar de 10 a 90 frames se multiplica casi por 12, sin embargo
+  las métricas con menores frames no son realmente más bajas que los modelos entrenados con
+  90 frames.
