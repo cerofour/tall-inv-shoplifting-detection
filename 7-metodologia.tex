@@ -1,55 +1,16 @@
 \section{Metodología}
 
-\subsection{Propuesta de Diseno de Investigación}
+\subsection{Diseño de Investigación}
 
-\subsubsection{Elección de Enfoque Cuantitativo}
-
-Debido a la naturaleza del campo que trabajamos, se ha optado por elegir el enfoque
-cuantitativo, a continuación se relacionan las características de este enfoque con
-nuestro trabajo.
-
-\begin{itemize}
-  \item \textbf{Reducir la realidad observable a elementos cuantificables}: 
-  Se compilarán horas de vídeo en un dataset, los cuales serán divididos en
-  frames, posteriormente serán anotados de acuerdo con las clases de anotación del
-  framework PCB, luego se reescalará la imagen a una resolución más fácil de
-  procesar, por último se utilizarán métodos de \textit{data augmentation}. Además,
-  se ajustarán hiperparámetros de los modelos como la cantidad de epochs,
-  optimizadores, entre otros.
-  \item \textbf{Medición de resultados del modelo}: Se utilizarán métricas
-  estandar en la literatura -- aquellas vistas en el marco teórico de este trabajo --
-  para medir el rendimiento del modelo propuesto, además se comparará con las
-  métricas obtenidas por el Aguero y Rengifo \cite{aguero_intelligent_2025}.
-\end{itemize}
+\subsubsection{Enfoque Cuantitativo}
+Se adopta un enfoque cuantitativo dado que la investigación traduce el comportamiento visual observable en variables numéricas y tensores estructurados, procesando colecciones de video mediante extracción de fotogramas, escalado de resolución, técnicas de \textit{data augmentation} y anotación categórica basada en el marco \textit{Pre-Crime Behavior} (PCB). Asimismo, el rendimiento de la solución propuesta se evalúa objetivamente mediante métricas estadísticas estandarizadas en la literatura (\textit{Precision}, \textit{Recall}, \textit{F1-Score}, \textit{mAP50} y \textit{mAP50-95}), lo que permite contrastar empíricamente los resultados frente a la línea base establecida por Solórzano y Candela \cite{aguero_intelligent_2025}.
 
 \subsubsection{Alcance de la Investigación}
+La investigación presenta un alcance descriptivo-explicativo. Es de carácter descriptivo porque mide y caracteriza los niveles de precisión, exhaustividad y calidad de localización espacial del modelo en el contexto del comercio minorista peruano; y es de carácter explicativo porque busca determinar la relación causal y el grado de impacto que genera la integración de una memoria temporal (capa LSTM) y una metodología conductual (\textit{framework} PCB de Martínez-Mascorro et al. \cite{martinez-mascorro_suspicious_2021}) sobre el rendimiento de la arquitectura estática base basada en YOLO \cite{aguero_intelligent_2025}.
 
-  El alcance que se ha elegido es descriptivo debido a que responderá a la
-  pregunta de investigación identificando los niveles de rendimiento del modelo
-  propuesto en métricas como \textit{Precision}, \textit{Recall}, \textit{F1-Score},
-  \textit{mAP50} y \textit{mAP50-95}.
+\subsubsection{Diseño Experimental}
+El estudio se apoya en un diseño experimental puro articulado en dos experimentos controlados sobre un mismo conjunto de prueba:
 
-  Adicionalmente, hemos decidido elegir el alcance explicativo, ya que este trabajo
-  se basa en la arquitectura YOLO propuesta por \cite{aguero_intelligent_2025}
-  combinando con una capa LSTM y además se utiliza el framework PCB de
-  \cite{martinez-mascorro_suspicious_2021}, por lo tanto, se buscará explicar las
-  diferencias en rendimiento al añadir estos dos componentes a la arquitectura, y
-  en qué medida afectan a la arquitectura base (YOLO).
+\paragraph{Experimento 1 (Comparación de Arquitecturas):} Evalúa la hipótesis de que una arquitectura híbrida espacio-temporal supera a un detector espacial estático en la detección temprana de hurtos. El grupo de control está constituido por el modelo estático YOLOv8 \cite{aguero_intelligent_2025}, mientras que el grupo experimental corresponde a la arquitectura integrada YOLO + LSTM + PCB, midiendo la ganancia en la reducción de falsos positivos y el incremento en las métricas globales de clasificación.
 
-\subsubsection{Metodología de Experimentos Puros}
-
-  \begin{itemize}
-    \item \textbf{Experimento de Comparación}: El primer experimento consiste
-    en comparar la arquitectura YOLO contra la arquitectura propuesta YOLO + LSTM
-    + PCB, para determinar si existe una mejora en las métricas al incorporar estos
-    dos nuevos componentes. Acá definimos el grupo de control como las métricas
-    obtenidas al utilizar solo la arquitectura YOLO y el grupo experimental
-    utilizando YOLO + LSTM + PCB.
-    \item \textbf{Experimento de Ablación}: Los experimentos de ablación
-    (\textit{ablation study}) consiste en remover o desactivar una parte del sistema
-    para ver como se comporta el modelo. En este trabajo, el componente a desactivar
-    será el framework PCB, a través de cambios en las anotaciones del dataset,
-    de manera similar a lo realizado por \cite{chinthulla_deep_2025}. Con la
-    finalidad aislar su efecto y demostrar cuantitativamente que el beneficio
-    proviene del método conductual y no solo de la red neuronal
-  \end{itemize}
+\paragraph{Experimento 2 (Estudio de Ablación del Framework PCB):} Aísla y cuantifica el aporte específico del marco conductual pre-delictivo mediante un estudio de ablación adaptado de la metodología de Chinthulla \cite{chinthulla_deep_2025}. En este experimento, el grupo de control emplea la arquitectura híbrida YOLO + LSTM entrenada con anotación tradicional/reactiva (desactivando las fases PCB), mientras que el grupo experimental utiliza la misma arquitectura entrenada con la segmentación multiclase del marco PCB, demostrando si la mejora de rendimiento proviene de la estrategia de anotación conductual o únicamente de la capacidad de la red neuronal.
