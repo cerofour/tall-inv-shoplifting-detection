@@ -35,7 +35,13 @@ soluciones orientadas a proteger la privacidad sin sacrificar rendimiento en la 
 
 \subsection{Modelado Conductual Pre-Delictivo}
 
-  
+  \subsection{Modelado Conductual Pre-Delictivo}
+
+El hurto en tiendas rara vez es un evento instantáneo; por el contrario, suele ser la culminación de una serie de acciones y posturas observables a lo largo del tiempo. Bajo esta premisa surge el marco de Comportamiento Pre-Delictivo (\textit{Pre-Crime Behavior} -- PCB), un enfoque conceptual que modela el crimen no como un acto aislado, sino como una secuencia de etapas conductuales. Específicamente, este framework segmenta un incidente de hurto en cuatro fases bien definidas: normal, sospechosa (pre-crimen), hurto y post-hurto.
+
+La principal ventaja operativa del marco PCB es su enfoque preventivo. Al entrenar a los sistemas para que presten especial atención a la etapa "sospechosa", la videovigilancia inteligente adquiere la capacidad de emitir alertas tempranas. Esto otorga al personal de seguridad una ventana de tiempo crucial para intervenir y disuadir al infractor antes de que el robo llegue a consumarse, abordando directamente las limitaciones de reacción tardía del CCTV tradicional.
+
+En la literatura reciente, este modelado conductual ha sido la base para desarrollar arquitecturas de detección complejas. Martínez-Mascorro et al. \cite{martinez-mascorro_suspicious_2021} fueron pioneros en proponer este framework, utilizando redes 3DCNN para identificar con éxito las conductas previas al crimen en las secuencias de video. Partiendo de esta misma metodología de cuatro fases, autores como Chinthulla \cite{chinthulla_deep_2025} han adoptado el marco PCB para comparar distintos enfoques de deep learning, demostrando que al segmentar el comportamiento de esta manera, las arquitecturas híbridas con memoria recurrente (como LRCN) resultan altamente efectivas para la detección temprana de actitudes sospechosas en pasillos comerciales.
 
 \subsection{Modelos Espaciales y Espacio-Temporales}
 
